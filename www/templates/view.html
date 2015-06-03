@@ -1,0 +1,26 @@
+<ion-view view-title="View">
+	<ion-nav-bar class="bar-positive">
+	    <ion-nav-back-button class="button-clear">
+	    	Back
+  		</ion-nav-back-button>
+	</ion-nav-bar>
+
+    <ion-content class="padding">
+        <div class="list list-inset">
+        	<h4>Edit Data</h4>
+            <label class="item item-input">
+                <input ng-model="selectedData.title" type="text" placeholder="Title" />
+            </label>
+            <label class="item item-input">
+                <input ng-model="selectedData.description" type="text" placeholder="Description" />
+            </label>
+            <label class="item item-input">
+                <input ng-model="selectedData.number" type="number" placeholder="Number" />
+            </label>
+        </div>
+        <div class="padding-left padding-right padding-bottom">
+            <a class="button button-large button-positive" ng-click="updateData(selectedData)">Update</a>
+        </div>
+    </ion-content>
+
+</ion-view>

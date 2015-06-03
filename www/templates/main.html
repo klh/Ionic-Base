@@ -6,20 +6,18 @@
 	</ion-nav-bar>
 
     <ion-content class="padding">
-        
+        <ion-list can-swipe="listCanSwipe" show-delete="shouldShowDelete">
+			<ion-item ng-repeat="data in datas" ng-href="#/view/{{data.$id}}">
+			    <h2>{{data.title}}</h2>
+			    <ion-option-button class="button-assertive" ng-click="deleteData(data)">
+      				Delete
+    			</ion-option-button>
+			</ion-item>
+		</ion-list>
+
+		<div class="padding-left padding-top">
+            <a class="button button-large button-positive" ng-click="goAdd()">Add</a>
+        </div>
     </ion-content>
 
-	<ion-tabs class="tabs-icon-top tabs-positive">
-	    <ion-tab title="Home" icon="ion-home" href="#/main">
-	    	<ion-nav-view name="home-tab"></ion-nav-view>
-	    </ion-tab>
-
-	    <ion-tab title="Stats" icon="ion-ios-list-outline" ui-sref="#/main">
-	    	<ion-nav-view name="stats-tab"></ion-nav-view>
-	    </ion-tab>
-
-	    <ion-tab title="About" icon="ion-ios-information" href="#/main">
-	    	<ion-nav-view name="about-tab"></ion-nav-view>
-	    </ion-tab>
-	</ion-tabs>
 </ion-view>

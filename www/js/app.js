@@ -22,20 +22,6 @@ var app = angular
 
 .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
-        // .state('tabs', {
-        //     url: "/tab",
-        //     abstract: true,
-        //     templateUrl: "templates/tabs.html"
-        // })
-        // .state('tabs.main', {
-        //   url: "/main",
-        //   views: {
-        //     'main-tab': {
-        //       templateUrl: "templates/main.html",
-        //       controller: "MainController"
-        //     }
-        //   }
-        // })
         .state('main', {
             url: "/main",
             templateUrl: "templates/main.html",
@@ -56,13 +42,26 @@ var app = angular
             templateUrl: "templates/login.html",
             controller: "AuthController"
         })
+        .state("add", {
+            url: "/add",
+            templateUrl: "templates/add.html",
+            controller: "MainController"
+        })
+        .state("edit", {
+            url: "/edit",
+            templateUrl: "templates/edit.html",
+            controller: "MainController"
+        })
+        .state("view", {
+            url: "/view/:dataId",
+            templateUrl: "templates/view.html",
+            controller: "MainController"
+        })
         .state("otherwise", {
             url: "*path",
             templateUrl: "templates/main.html",
             controller: "MainController"
         });
-    
-    //$urlRouterProvider.otherwise('login');
 })
 
 .controller("AuthController", function($scope, FURL, $state, $ionicHistory, $firebaseAuth) {
@@ -118,6 +117,37 @@ var app = angular
     });
 })
 
-.controller("MainController", function($scope, FURL, $state, $ionicHistory, $firebaseAuth) {
+.controller('MainController', function($scope, FURL, $firebaseArray, $firebaseObject, $state, $stateParams) {
+    var fb = new Firebase(FURL);
+    var fbData = $firebaseArray(fb.child('data'));
 
+    $scope.listCanSwipe = true;
+    $scope.datas = fbData;
+    
+    // if data Id is passed in the url, get the Firebase object with that Id and put it on the scope
+    var dataId = $stateParams.dataId;
+    if (dataId) {
+        $scope.selectedData = getData(dataId);
+    }
+    function getData(dataId) {
+        return $firebaseObject(fb.child('data').child(dataId));
+    }
+
+    $scope.addData = function(data) {
+        fbData.$add(data);
+        $state.go('main');
+    }
+
+    $scope.deleteData = function(data) {
+        fbData.$remove(data);
+    }
+
+    $scope.updateData = function(data) {
+        $scope.selectedData.$save(data);
+        $state.go('main');
+    }
+
+    $scope.goAdd = function() {
+      $state.go('add');
+    }
 });

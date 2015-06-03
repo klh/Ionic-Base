@@ -1,0 +1,26 @@
+<ion-view view-title="Add">
+	<ion-nav-bar class="bar-positive">
+	    <ion-nav-back-button class="button-clear">
+	    	Back
+  		</ion-nav-back-button>
+	</ion-nav-bar>
+
+     <ion-content class="has-header">
+        <div class="list list-inset">
+        	<h4>Add Data</h4>
+            <label class="item item-input">
+                <input ng-model="data.title" type="text" placeholder="Title" />
+            </label>
+            <label class="item item-input">
+                <input ng-model="data.description" type="text" placeholder="Description" />
+            </label>
+            <label class="item item-input">
+                <input ng-model="data.number" type="number" placeholder="Number" />
+            </label>
+        </div>
+        <div class="padding-left padding-right padding-bottom">
+            <a class="button button-large button-positive" ng-click="addData(data)">Add</a>
+        </div>
+    </ion-content>
+
+</ion-view>
