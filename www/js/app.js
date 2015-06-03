@@ -22,19 +22,24 @@ var app = angular
 
 .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
-        .state('tabs', {
-            url: "/tab",
-            abstract: true,
-            templateUrl: "templates/tabs.html"
-        })
-        .state('tabs.main', {
-          url: "/main",
-          views: {
-            'main-tab': {
-              templateUrl: "templates/main.html",
-              controller: "MainController"
-            }
-          }
+        // .state('tabs', {
+        //     url: "/tab",
+        //     abstract: true,
+        //     templateUrl: "templates/tabs.html"
+        // })
+        // .state('tabs.main', {
+        //   url: "/main",
+        //   views: {
+        //     'main-tab': {
+        //       templateUrl: "templates/main.html",
+        //       controller: "MainController"
+        //     }
+        //   }
+        // })
+        .state('main', {
+            url: "/main",
+            templateUrl: "templates/main.html",
+            controller: "MainController"
         })
         .state("register", {
             url: "/register",
@@ -50,13 +55,18 @@ var app = angular
             url: "/login",
             templateUrl: "templates/login.html",
             controller: "AuthController"
+        })
+        .state("otherwise", {
+            url: "*path",
+            templateUrl: "templates/main.html",
+            controller: "MainController"
         });
     
-    $urlRouterProvider.otherwise('/');
+    //$urlRouterProvider.otherwise('login');
 })
 
 .controller("AuthController", function($scope, FURL, $state, $ionicHistory, $firebaseAuth) {
-  
+
     var fb = new Firebase(FURL);
     var Auth = $firebaseAuth(fb);
 
@@ -65,7 +75,7 @@ var app = angular
             email: username,
             password: password
         }).then(function(authData) {
-            $state.go("tabs.main");
+            $state.go("main");
         }).catch(function(error) {
             console.error("ERROR: " + error);
         });
@@ -106,4 +116,8 @@ var app = angular
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
         viewData.enableBack = true;
     });
+})
+
+.controller("MainController", function($scope, FURL, $state, $ionicHistory, $firebaseAuth) {
+
 });
