@@ -5,14 +5,14 @@
             <div class="list list-inset">
             	<h4>Sign in with your email</h4>
                 <label class="item item-input">
-                    <input ng-model="username" type="text" placeholder="email address" />
+                    <input ng-model="user.email" type="text" placeholder="Email Address" />
                 </label>
                 <label class="item item-input">
-                    <input ng-model="password" type="password" placeholder="Password" />
+                    <input ng-model="user.password" type="password" placeholder="Password" />
                 </label>
             </div>
             <div class="padding-left padding-right padding-bottom">
-                <a class="button button-large button-positive" ng-click="login(username, password)">Sign In</a>
+                <a class="button button-large button-positive" ng-click="login(user)">Sign In</a>
                 <a class="pass-text-height" href="#/forgot-password">Forgot your password?</a>
             </div>
 

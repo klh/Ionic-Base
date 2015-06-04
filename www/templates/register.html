@@ -7,14 +7,17 @@
 	<ion-content class="has-header">
         <div class="list list-inset">
             <label class="item item-input">
-                <input ng-model="username" type="text" placeholder="email address" />
+                <input ng-model="user.name" type="text" placeholder="Name" />
             </label>
             <label class="item item-input">
-                <input ng-model="password" type="password" placeholder="Password" />
+                <input ng-model="user.email" type="email" placeholder="Email Address" />
+            </label>
+            <label class="item item-input">
+                <input ng-model="user.password" type="password" placeholder="Password" />
             </label>
         </div>
         <div class="padding-left">
-    		<a class="button button-large button-positive padding-left" ng-click="register(username, password)">Create a New Account</a>
+    		<a class="button button-large button-positive padding-left" ng-click="register(user)">Create a New Account</a>
     	</div>
     </ion-content>
 </ion-view>
