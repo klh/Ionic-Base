@@ -3,6 +3,7 @@
 app.controller('MainController', function($scope, FURL, Auth, $firebaseArray, $firebaseObject, $state, $stateParams) {
     var fb = new Firebase(FURL);
     var fbData = $firebaseArray(fb.child('data'));
+    $scope.currentUser = Auth.user;
 
     $scope.listCanSwipe = true;
     $scope.datas = fbData;
@@ -31,7 +32,11 @@ app.controller('MainController', function($scope, FURL, Auth, $firebaseArray, $f
     }
 
     $scope.goAdd = function() {
-      $state.go('add');
+        $state.go('add');
+    }
+
+    $scope.goProfile = function() {
+        $state.go('profile');
     }
 
     $scope.logout = function() {

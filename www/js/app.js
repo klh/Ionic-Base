@@ -31,16 +31,6 @@ var app = angular
 })
 .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
-        .state('main', {
-            url: "/main",
-            templateUrl: "templates/main.html",
-            controller: "MainController",
-            resolve: {
-              currentAuth: function(Auth) {
-                return Auth.requireAuth();
-              }
-            },            
-        })
         .state("register", {
             url: "/register",
             templateUrl: "templates/register.html",
@@ -55,7 +45,27 @@ var app = angular
             url: "/login",
             templateUrl: "templates/login.html",
             controller: "AuthController"
+        })    
+        .state('main', {
+            url: "/main",
+            templateUrl: "templates/main.html",
+            controller: "MainController",
+            resolve: {
+              currentAuth: function(Auth) {
+                return Auth.requireAuth();
+              }
+            }       
         })
+        .state("profile", {
+            url: "/profile",
+            templateUrl: "templates/profile.html",
+            controller: "MainController",
+            resolve: {
+              currentAuth: function(Auth) {
+                return Auth.requireAuth();
+              }
+            }
+        })        
         .state("add", {
             url: "/add",
             templateUrl: "templates/add.html",
